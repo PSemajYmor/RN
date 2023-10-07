@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Button Status</title>
+    <title>NodeMCU LED Control</title>
 </head>
 <body>
-    <button id="button1" value="off" onclick="toggleButtonStatus('button1')">Button 1</button>
-    <button id="button2" value="off" onclick="toggleButtonStatus('button2')">Button 2</button>
+    <h1>LED Control</h1>
+    <button onclick="turnOn()">Turn On</button>
+    <button onclick="turnOff()">Turn Off</button>
 
     <script>
-        function toggleButtonStatus(buttonId) {
-            var button = document.getElementById(buttonId);
-            var currentStatus = button.getAttribute("value");
+        function turnOn() {
+            fetch('https://raw.githubusercontent.com/yourusername/yourrepository/master/led_state.json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ led_state: 1 })
+            });
+        }
 
-            // Toggle the status
-            if (currentStatus === "off") {
-                button.setAttribute("value", "on");
-                button.innerHTML = button.innerHTML.replace("off", "on");
-            } else {
-                button.setAttribute("value", "off");
-                button.innerHTML = button.innerHTML.replace("on", "off");
-            }
+        function turnOff() {
+            fetch('https://raw.githubusercontent.com/yourusername/yourrepository/master/led_state.json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ led_state: 0 })
+            });
         }
     </script>
 </body>
