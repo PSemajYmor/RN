@@ -1,4 +1,3 @@
 {
-    "button1": "off",
-    "button2": "on"
+    "led_state": 0
 }
