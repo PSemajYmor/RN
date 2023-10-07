@@ -4,7 +4,23 @@
     <title>Button Status</title>
 </head>
 <body>
-    <button id="button1">Button 1</button>
-    <button id="button2">Button 2</button>
+    <button id="button1" value="off" onclick="toggleButtonStatus('button1')">Button 1</button>
+    <button id="button2" value="off" onclick="toggleButtonStatus('button2')">Button 2</button>
+
+    <script>
+        function toggleButtonStatus(buttonId) {
+            var button = document.getElementById(buttonId);
+            var currentStatus = button.getAttribute("value");
+
+            // Toggle the status
+            if (currentStatus === "off") {
+                button.setAttribute("value", "on");
+                button.innerHTML = button.innerHTML.replace("off", "on");
+            } else {
+                button.setAttribute("value", "off");
+                button.innerHTML = button.innerHTML.replace("on", "off");
+            }
+        }
+    </script>
 </body>
 </html>
